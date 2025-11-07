@@ -1,272 +1,187 @@
-<!Doctype html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CraftStory — Countdown</title>
-    <meta name="description"
-        content="Countdown to CraftStory launch — November 17 at 10:00 AM Pacific. Sign up for early access." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CraftStory — Countdown</title>
+  <meta name="description" content="Countdown to CraftStory launch — November 17 at 10:00 AM Pacific. Sign up for early access." />
+
+  <style>
+    /* Self-hosted font */
+    @font-face{
+      font-family:'Gilroy';
+      src: url('./fonts/gilroy/Gilroy-Regular.ttf') format('truetype');
+      font-weight:400;
+      font-style:normal;
+      font-display:swap;
+    }
+
+    /* Base + layout */
+    *{ box-sizing:border-box }
+    html, body{ height:100% }
+    body{
+      margin:0;
+      font-family:'Gilroy', Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#182033;
+      background:#fff;
+    }
+    a{ text-decoration:none }
+
+    /* Page wrapper fills the viewport and uses flex */
+    .wrap{
+      max-width:1440px;
+      margin:0 auto;                 /* no bottom margin */
+      padding:16px 16px 0;           /* no bottom padding */
+      min-height:100vh;              /* fill viewport */
+      display:flex;
+    }
+    .frame{
+      flex:1;
+      display:flex;
+    }
+
+    /* Card is a vertical stack; image row is pushed to the bottom */
+    .card{
+      border-radius:32px;
+      padding-top:clamp(20px,4vw,48px);
+      padding-bottom:0;              /* critical: no bottom padding */
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height:0;
+      width:100%;
+    }
+
+    /* Brand */
+    .brand{
+      display:flex; align-items:center; gap:.625rem;
+      justify-content:center;
+    }
+
+    /* Heading + sub */
+    .main-heading{
+      margin:18px auto 8px;
+      letter-spacing:-0.02em;
+      max-width:800px;
+
+      font-style:normal;
+      font-weight:600;
+      font-size:64px;
+      line-height:72px;
+      text-align:center;
+      color:#182033;
+    }
+    .sub{
+      font-weight:600;
+      font-size:20px;
+      line-height:24px;
+      text-align:center;
+      color:#6E7991;
+      margin-top:26px;
+    }
+
+    /* CTA + timer row */
+    .cta-row{
+      display:flex; align-items:center; justify-content:center;
+      gap:12px; margin:20px 0 10px;
+      flex-wrap:wrap;
+      margin-bottom: 70px;
+    }
+    .btn{
+      display:flex; justify-content:center; align-items:center;
+      cursor:pointer;
+      transition:transform .08s ease, background .2s ease;
+
+      padding:0 32px;
+      width:200px; height:56px;
+      background:#FC432F;
+      border-radius:12px;
+
+      font-weight:600; font-size:18px; line-height:24px; color:#fff;
+    }
+    .btn:hover{ background:#f03824 }
+    .btn:active{ transform:translateY(1px) }
+    .btn:focus-visible{ outline:3px solid #f03824; outline-offset:2px }
+
+    .timer{
+      display:flex; gap:10px;
+      border-left:2px solid #D3D8E2;
+      padding-left:30px;
+      margin-left:30px;
+    }
+    .chip{
+      min-width:63px; height:60px;
+      padding:10px 10px 8px;
+      background:#EFF2F9;
+      border-radius:12px;
+      text-align:center;
+    }
+    .chip .num{
+      font-weight:600; font-size:18px; line-height:24px; color:#182033;
+    }
+    .chip .lab{
+      display:block; margin-top:-3px;
+      font-weight:600; font-size:12px; line-height:20px; color:#6E7991;
+    }
+
+    /* Image row — pinned to bottom */
+    .duo{
+      position:relative;
+      display:flex; align-items:flex-end; justify-content:center;
+      gap:clamp(16px,6vw,56px);
+      margin-top:auto;               /* pushes this row to the bottom */
+      margin-bottom:0;               /* ensure no extra gap */
+      line-height:0;                 /* kill descender gap */
+    }
+    .duo img{
+      display:block;                 /* remove inline image gap */
+      height:auto;
+      border-radius:18px;
+      will-change:transform, opacity;
+      /* width set in media queries for mobile refinement if needed */
+    }
+
+    /* Mobile tweaks */
+    @media (max-width:600px){
+      .wrap{ padding:0 30px 0; min-height: 92vh;  }      
+      .brand{ justify-content:flex-start }
+      .main-heading{
+        font-size:44px; line-height:48px; text-align:left; margin-top:28px;
+      }
+      .sub{ text-align:left; margin-top:8px }
+      .cta-row{ margin-top:0; margin-bottom: 10px; }
+      .btn{ width:100% }
+      .timer{ width:100%; margin-left:0; padding-left:0; border-left:0 }
+      .chip{ width:100% }
+      .card{
+        padding-bottom: 0;
+      }
+      .duo{ 
+        
+        margin-bottom: 0;
+
+      }
+      .duo img{ 
+        width:100%; 
+        max-width: 100%; 
+        height: auto; 
+        display: block;
+        height: 250px;
+      }
+    }
 
 
-    <style>
-        @font-face {
-            font-family: 'Gilroy';
-            src:
-
-                url('./fonts/gilroy/Gilroy-Regular.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-        html,
-        body {
-            height: 100%
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Gilroy', Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        .wrap {
-            max-width: 1440px;
-            margin: 20px auto 0 auto;
-            padding: 16px 16px 0 16px;
-        }
-
-        .card {
-            border-radius: 32px;
-            padding-top: clamp(20px, 4vw, 48px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: .625rem;
-            justify-content: center;
-        }
-
-        .main-heading {
-            margin: 18px auto 8px;
-            letter-spacing: -0.02em;
-            font-size: clamp(28px, 3.4vw, 44px);
-            max-width: 800px;
-
-            font-style: normal;
-            font-weight: 600;
-            font-size: 64px;
-            line-height: 72px;
-            text-align: center;
-
-            color: #182033;
-        }
-
-        .sub {
-
-            font-style: normal;
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 24px;
-
-            text-align: center;
-
-            color: #6E7991;
-            margin-top: 26px;
-        }
-
-        .cta-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin: 48px 0 10px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 4;
-            cursor: pointer;
-            transition: transform .08s ease, background .2s ease;
-            padding: 0px 32px;
-            width: 200px;
-            height: 56px;
-            background: #FC432F;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 18px;
-            line-height: 24px;
-            text-align: center;
-            color: #FFFFFF;
-
-        }
-
-        .btn:hover {
-            background: #f03824
-        }
-
-        .btn:active {
-            transform: translateY(1px)
-        }
-
-        .btn:focus-visible {
-            outline: 3px solid #f03824;
-            outline-offset: 2px
-        }
-
-        .timer {
-            display: flex;
-            gap: 10px;
-            border-left: 2px solid #D3D8E2;
-            padding-left: 30px;
-            margin-left: 30px;
-
-        }
-
-        .chip {
-            min-width: 63px;
-            height: 60px;
-            padding: 10px 10px 8px;
-            background: #EFF2F9;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .chip .num {
-
-            font-weight: 600;
-            font-size: 18px;
-            line-height: 24px;
-            text-align: center;
-
-            color: #182033;
-        }
-
-        .chip .lab {
-            display: block;
-
-
-            margin-top: -3px;
-
-            font-style: normal;
-            font-weight: 600;
-            font-size: 12px;
-            line-height: 20px;
-            text-align: center;
-            color: #6E7991;
-        }
-
-        .duo {
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: clamp(16px, 6vw, 56px);
-            margin-top: 80px;
-        }
-
-        .duo img {
-
-            height: auto;
-            display: block;
-            border-radius: 18px;
-            will-change: transform, opacity;
-        }
-
-
-
-        .frame {
-
-            padding: clamp(0px, 2vw, 0px);
-        }
-
-        .sr-only {
-            position: absolute !important;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        @media (max-width:490px) {
-            .wrap {
-                padding: 0 30px;
-            }
-
-            .brand {
-                justify-content: start;
-            }
-
-            .main-heading {
-                font-size: 44px;
-                text-align: start;
-                line-height: 48px;
-                margin-top: 28px;
-
-            }
-
-            .cta-row {
-                margin-top: 0px;
-            }
-
-            .sub {
-                text-align: start;
-                margin-top: 8px;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .timer {
-                width: 100%;
-                margin-left: 0;
-                padding-left: 0;
-                border-left: 0;
-
-            }
-
-            .chip {
-                width: 100%;
-            }
-
-            .duo img {
-
-                padding: 0;
-                width: 490px;
-            }
-
-
-        }
-    </style>
+    
+  </style>
 </head>
-
 <body>
-    <main class="wrap">
-        <section class="frame" aria-labelledby="hero-title">
-            <div class="card">
-                <!-- Brand -->
-                <div class="brand" aria-label="CraftStory">
-
+  <main class="wrap">
+    <section class="frame" aria-labelledby="hero-title">
+      <div class="card">
+        <!-- Brand -->
+       
+ <div class="brand" aria-label="CraftStory">
 
                     <svg width="209" height="45" viewBox="0 0 209 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -311,102 +226,88 @@
 
                 </div>
 
-                <!-- Heading -->
-                <h1 id="hero-title" class="main-heading">
-                    A new way of creating videos is coming!
-                </h1>
-                <p class="sub">Sign up for an early access!</p>
+        <!-- Heading -->
+        <h1 id="hero-title" class="main-heading">
+          A new way of creating videos is coming!
+        </h1>
+        <p class="sub">Sign up for an early access!</p>
 
-                <!-- CTA + Countdown -->
-                <div class="cta-row">
-                    <a class="btn" href="#signup" role="button">Join Now</a>
+        <!-- CTA + Countdown -->
+        <div class="cta-row">
+          <a class="btn" href="#signup" role="button">Join Now</a>
 
-                    <div class="timer" aria-label="Countdown to launch" aria-live="polite">
-                        <div class="chip" aria-label="days left">
-                            <div class="num" id="d">0</div>
-                            <span class="lab">days</span>
-                        </div>
-                        <div class="chip" aria-label="hours left">
-                            <div class="num" id="h">0</div>
-                            <span class="lab">hrs</span>
-                        </div>
-                        <div class="chip" aria-label="minutes left">
-                            <div class="num" id="m">0</div>
-                            <span class="lab">mins</span>
-                        </div>
-                        <div class="chip" aria-label="seconds left">
-                            <div class="num" id="s">0</div>
-                            <span class="lab">secs</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="duo" aria-hidden="true">
-                    <img src="./images/characters.png" alt="characters">
-                </div>
-
-                <div class="glow" aria-hidden="true"></div>
+          <div class="timer" aria-label="Countdown to launch" aria-live="polite">
+            <div class="chip" aria-label="days left">
+              <div class="num" id="d">0</div>
+              <span class="lab">days</span>
             </div>
-        </section>
-    </main>
+            <div class="chip" aria-label="hours left">
+              <div class="num" id="h">0</div>
+              <span class="lab">hrs</span>
+            </div>
+            <div class="chip" aria-label="minutes left">
+              <div class="num" id="m">0</div>
+              <span class="lab">mins</span>
+            </div>
+            <div class="chip" aria-label="seconds left">
+              <div class="num" id="s">0</div>
+              <span class="lab">secs</span>
+            </div>
+          </div>
+        </div>
 
-    <script>
-        /**
-         * Countdown to Nov 17 @ 10:00 AM America/Los_Angeles
-         * Notes:
-         * - Nov 17 is after DST ends, so Pacific offset is UTC-08:00.
-         * - We compute the next upcoming Nov 17 at 10:00 in Los Angeles; if today is past it, use next year.
-         * - We work in UTC to avoid local timezone pitfalls.
-         */
-        (function () {
-            const els = {
-                d: document.getElementById('d'),
-                h: document.getElementById('h'),
-                m: document.getElementById('m'),
-                s: document.getElementById('s')
-            };
+        <!-- Image pinned to bottom -->
+        <div class="duo" aria-hidden="true">
+          <img src="./images/characters.png" alt="">
+        </div>
+      </div>
+    </section>
+  </main>
 
-            function pad(n) { return n.toString().padStart(2, '0'); }
+  <script>
+    // Countdown to Nov 17 @ 10:00 AM America/Los_Angeles (18:00 UTC after DST)
+    (function () {
+      const els = {
+        d: document.getElementById('d'),
+        h: document.getElementById('h'),
+        m: document.getElementById('m'),
+        s: document.getElementById('s')
+      };
 
-            function targetEpochMs() {
-                const now = new Date();
-                let year = now.getUTCFullYear();
+      function pad(n){ return n.toString().padStart(2,'0'); }
 
-             
-                let target = Date.UTC(year, 10 /* Nov */, 17, 18, 0, 0); 
+      function targetEpochMs() {
+        const now = new Date();
+        let year = now.getUTCFullYear();
+        let target = Date.UTC(year, 10 /* Nov */, 17, 18, 0, 0); // 18:00Z = 10:00 PST
+        if (Date.now() >= target) {
+          year += 1;
+          target = Date.UTC(year, 10, 17, 18, 0, 0);
+        }
+        return target;
+      }
 
-                if (Date.now() >= target) {
-                    year += 1;
-                    target = Date.UTC(year, 10, 17, 18, 0, 0);
-                }
-                return target;
-            }
+      function tick() {
+        const end = targetEpochMs();
+        let diff = end - Date.now();
+        if (diff < 0) diff = 0;
 
-            function tick() {
-                const end = targetEpochMs();
-                let diff = end - Date.now();
+        const sec = Math.floor(diff / 1000);
+        const days = Math.floor(sec / 86400);
+        const hours = Math.floor((sec % 86400) / 3600);
+        const mins = Math.floor((sec % 3600) / 60);
+        const secs = sec % 60;
 
-                if (diff < 0) diff = 0;
+        els.d.textContent = days;
+        els.h.textContent = pad(hours);
+        els.m.textContent = pad(mins);
+        els.s.textContent = pad(secs);
+      }
 
-                const sec = Math.floor(diff / 1000);
-                const days = Math.floor(sec / 86400);
-                const hours = Math.floor((sec % 86400) / 3600);
-                const mins = Math.floor((sec % 3600) / 60);
-                const secs = sec % 60;
-
-                els.d.textContent = days;
-                els.h.textContent = pad(hours);
-                els.m.textContent = pad(mins);
-                els.s.textContent = pad(secs);
-            }
-
-            tick();
-            const timer = setInterval(tick, 1000);
-            window.addEventListener('visibilitychange', () => {
-                if (!document.hidden) tick();
-            });
-        })();
-    </script>
+      tick();
+      setInterval(tick, 1000);
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); });
+    })();
+  </script>
 </body>
-
 </html>
