@@ -1,0 +1,412 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CraftStory — Countdown</title>
+    <meta name="description"
+        content="Countdown to CraftStory launch — November 17 at 10:00 AM Pacific. Sign up for early access." />
+
+
+    <style>
+        @font-face {
+            font-family: 'Gilroy';
+            src:
+
+                url('./fonts/gilroy/Gilroy-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Gilroy', Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .wrap {
+            max-width: 1440px;
+            margin: 20px auto 0 auto;
+            padding: 16px 16px 0 16px;
+        }
+
+        .card {
+            border-radius: 32px;
+            padding-top: clamp(20px, 4vw, 48px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .625rem;
+            justify-content: center;
+        }
+
+        .main-heading {
+            margin: 18px auto 8px;
+            letter-spacing: -0.02em;
+            font-size: clamp(28px, 3.4vw, 44px);
+            max-width: 800px;
+
+            font-style: normal;
+            font-weight: 600;
+            font-size: 64px;
+            line-height: 72px;
+            text-align: center;
+
+            color: #182033;
+        }
+
+        .sub {
+
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+
+            text-align: center;
+
+            color: #6E7991;
+            margin-top: 26px;
+        }
+
+        .cta-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 48px 0 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 4;
+            cursor: pointer;
+            transition: transform .08s ease, background .2s ease;
+            padding: 0px 32px;
+            width: 200px;
+            height: 56px;
+            background: #FC432F;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 24px;
+            text-align: center;
+            color: #FFFFFF;
+
+        }
+
+        .btn:hover {
+            background: #f03824
+        }
+
+        .btn:active {
+            transform: translateY(1px)
+        }
+
+        .btn:focus-visible {
+            outline: 3px solid #f03824;
+            outline-offset: 2px
+        }
+
+        .timer {
+            display: flex;
+            gap: 10px;
+            border-left: 2px solid #D3D8E2;
+            padding-left: 30px;
+            margin-left: 30px;
+
+        }
+
+        .chip {
+            min-width: 63px;
+            height: 60px;
+            padding: 10px 10px 8px;
+            background: #EFF2F9;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .chip .num {
+
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 24px;
+            text-align: center;
+
+            color: #182033;
+        }
+
+        .chip .lab {
+            display: block;
+
+
+            margin-top: -3px;
+
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 20px;
+            text-align: center;
+            color: #6E7991;
+        }
+
+        .duo {
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: clamp(16px, 6vw, 56px);
+            margin-top: 80px;
+        }
+
+        .duo img {
+
+            height: auto;
+            display: block;
+            border-radius: 18px;
+            will-change: transform, opacity;
+        }
+
+
+
+        .frame {
+
+            padding: clamp(0px, 2vw, 0px);
+        }
+
+        .sr-only {
+            position: absolute !important;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @media (max-width:490px) {
+            .wrap {
+                padding: 0 30px;
+            }
+
+            .brand {
+                justify-content: start;
+            }
+
+            .main-heading {
+                font-size: 44px;
+                text-align: start;
+                line-height: 48px;
+                margin-top: 28px;
+
+            }
+
+            .cta-row {
+                margin-top: 0px;
+            }
+
+            .sub {
+                text-align: start;
+                margin-top: 8px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .timer {
+                width: 100%;
+                margin-left: 0;
+                padding-left: 0;
+                border-left: 0;
+
+            }
+
+            .chip {
+                width: 100%;
+            }
+
+            .duo img {
+
+                padding: 0;
+                width: 490px;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <section class="frame" aria-labelledby="hero-title">
+            <div class="card">
+                <!-- Brand -->
+                <div class="brand" aria-label="CraftStory">
+
+
+                    <svg width="209" height="45" viewBox="0 0 209 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M69.669 30.6503C68.5935 31.1208 67.3164 31.356 65.7704 31.356C64.5269 31.356 63.3842 31.1544 62.3759 30.7175C61.3341 30.2806 60.4603 29.6756 59.7209 28.869C58.9815 28.0624 58.3765 27.1214 57.9732 26.0123C57.5699 24.9032 57.3683 23.7269 57.3683 22.3826C57.3683 21.0719 57.5699 19.862 57.9732 18.7529C58.3765 17.6438 58.9479 16.7028 59.7209 15.8962C60.4603 15.0896 61.3677 14.4846 62.3759 14.0477C63.4178 13.6108 64.5269 13.4092 65.7704 13.4092C67.1819 13.4092 68.4254 13.6444 69.4673 14.0813C70.5428 14.5182 71.4166 15.1568 72.156 15.9634L74.9455 13.1739C73.8028 12.0312 72.4921 11.1238 71.0133 10.4516C69.5345 9.77944 67.7869 9.44336 65.7368 9.44336C63.9219 9.44336 62.2415 9.77944 60.6955 10.4516C59.1495 11.1238 57.8052 12.0312 56.6625 13.2075C55.5198 14.3838 54.646 15.7281 54.0074 17.3077C53.4025 18.8537 53.0664 20.5341 53.0664 22.349C53.0664 24.1302 53.3689 25.8107 54.0074 27.3902C54.6124 28.9362 55.5198 30.3142 56.6625 31.4905C57.8052 32.6668 59.1495 33.5742 60.6955 34.2464C62.2415 34.9185 63.9219 35.221 65.7368 35.221C67.7533 35.221 69.5009 34.8849 71.0805 34.2128C72.6265 33.5406 73.9708 32.6332 75.1135 31.4569L72.324 28.6674C71.6182 29.5412 70.7108 30.1797 69.669 30.6503Z"
+                            fill="#182033" />
+                        <path
+                            d="M101.698 19.6604C101.194 19.089 100.623 18.5849 99.9168 18.2152C98.9086 17.6439 97.7323 17.375 96.4216 17.375C94.8756 17.375 93.464 17.7783 92.2205 18.5849C90.977 19.3915 89.9687 20.467 89.263 21.8113C88.5236 23.1556 88.1875 24.668 88.1875 26.3821C88.1875 28.0625 88.5572 29.5749 89.263 30.9192C90.0024 32.2635 90.977 33.339 92.2205 34.112C93.464 34.885 94.8756 35.2883 96.4216 35.2883C97.7323 35.2883 98.9086 35.0194 99.9168 34.4481C100.589 34.0784 101.194 33.6079 101.664 33.0365V34.9186H105.597V17.7447H101.664V19.6604H101.698ZM100.589 30.079C99.6816 31.0536 98.5053 31.5577 97.0601 31.5577C96.1191 31.5577 95.2789 31.3225 94.5395 30.8856C93.8001 30.4487 93.2288 29.8437 92.8255 29.0371C92.4222 28.2641 92.1869 27.3567 92.1869 26.3148C92.1869 25.273 92.3886 24.3992 92.8255 23.5926C93.2288 22.8196 93.8001 22.181 94.5395 21.7441C95.2789 21.3072 96.1191 21.0719 97.0601 21.0719C98.0348 21.0719 98.875 21.3072 99.6144 21.7441C100.354 22.181 100.891 22.786 101.328 23.5926C101.732 24.3655 101.933 25.273 101.933 26.3148C101.933 27.8608 101.496 29.1043 100.589 30.079Z"
+                            fill="#182033" />
+                        <path
+                            d="M125.427 10.5859H121.494V17.7445H114.537V15.4592C114.537 14.5181 114.806 13.7787 115.31 13.2746C115.815 12.7705 116.554 12.5016 117.495 12.5016C117.73 12.5016 117.932 12.5352 118.134 12.5352V8.8383C117.932 8.8383 117.73 8.80469 117.495 8.80469C116.151 8.80469 114.941 9.10716 113.899 9.67851C112.857 10.2498 112.05 11.0228 111.479 12.0311C110.908 13.0393 110.605 14.182 110.605 15.4928V17.7445H107.547V21.307H110.605V34.9184H114.537V21.307H121.494V34.9184H125.427V21.307H129.527V17.7445H125.427V10.5859Z"
+                            fill="#182033" />
+                        <path
+                            d="M145.458 22.4842C144.752 21.9128 143.979 21.4759 143.139 21.1062C142.299 20.7365 141.459 20.434 140.585 20.1316C139.745 19.8291 138.972 19.5266 138.266 19.2241C137.56 18.8881 136.989 18.5184 136.552 18.0478C136.115 17.5773 135.913 16.9724 135.913 16.1994C135.913 15.292 136.249 14.5862 136.955 14.0821C137.661 13.5779 138.636 13.3427 139.879 13.3427C140.887 13.3427 141.761 13.5443 142.534 13.9476C143.307 14.3509 144.047 14.9559 144.786 15.7625L147.575 12.973C146.769 11.9647 145.693 11.1581 144.416 10.5196C143.106 9.88101 141.627 9.54492 140.014 9.54492C138.501 9.54492 137.09 9.81379 135.88 10.3515C134.636 10.8893 133.662 11.6959 132.922 12.7377C132.183 13.7796 131.847 15.0231 131.847 16.5019C131.847 17.779 132.048 18.8544 132.485 19.6947C132.922 20.5349 133.494 21.207 134.199 21.7448C134.905 22.2825 135.678 22.7194 136.518 23.0555C137.359 23.3916 138.199 23.7277 139.073 23.9965C139.913 24.2654 140.686 24.5679 141.392 24.9376C142.097 25.2737 142.669 25.7106 143.106 26.2483C143.542 26.786 143.744 27.4582 143.744 28.2984C143.744 29.3067 143.341 30.0797 142.501 30.651C141.694 31.2223 140.585 31.5248 139.207 31.5248C137.728 31.5248 136.518 31.256 135.544 30.6846C134.603 30.1133 133.762 29.3403 133.09 28.332L130.301 31.1215C131.41 32.4995 132.653 33.5413 134.031 34.2807C135.409 34.9865 137.09 35.3562 139.073 35.3562C141.761 35.3562 143.912 34.684 145.492 33.3733C147.071 32.0626 147.878 30.2813 147.878 28.0295C147.878 26.6852 147.676 25.5761 147.239 24.7023C146.702 23.7613 146.13 23.0555 145.458 22.4842Z"
+                            fill="#182033" />
+                        <path
+                            d="M155.844 10.5859H151.879V17.7445H148.82V21.307H151.879V34.9184H155.844V21.307H159.945V17.7445H155.844V10.5859Z"
+                            fill="#182033" />
+                        <path
+                            d="M174.056 18.5845C172.712 17.8115 171.166 17.4082 169.485 17.4082C167.805 17.4082 166.292 17.8115 164.948 18.6181C163.604 19.4247 162.495 20.5002 161.722 21.8109C160.915 23.1552 160.512 24.634 160.512 26.3144C160.512 27.9949 160.915 29.5072 161.722 30.8516C162.528 32.1959 163.604 33.305 164.948 34.078C166.292 34.8846 167.838 35.2879 169.485 35.2879C171.166 35.2879 172.712 34.8846 174.056 34.078C175.4 33.2714 176.509 32.1959 177.282 30.8516C178.089 29.5072 178.492 27.9612 178.492 26.3144C178.492 24.634 178.089 23.1216 177.282 21.7773C176.509 20.433 175.4 19.3575 174.056 18.5845ZM173.821 28.9695C173.417 29.7425 172.812 30.381 172.073 30.818C171.334 31.2549 170.46 31.4901 169.485 31.4901C168.544 31.4901 167.67 31.2549 166.931 30.818C166.192 30.381 165.587 29.7761 165.183 28.9695C164.78 28.1965 164.545 27.2891 164.545 26.2808C164.545 25.2726 164.746 24.3988 165.183 23.6258C165.587 22.8528 166.192 22.2478 166.931 21.8109C167.67 21.374 168.544 21.1387 169.485 21.1387C170.46 21.1387 171.334 21.374 172.073 21.8109C172.812 22.2478 173.384 22.8528 173.821 23.6258C174.258 24.3988 174.459 25.2726 174.459 26.2808C174.459 27.2891 174.258 28.1965 173.821 28.9695Z"
+                            fill="#182033" />
+                        <path
+                            d="M81.6346 19.4251C81.601 19.4587 81.5674 19.5259 81.5338 19.5595V17.7447H77.6016V34.9186H81.5338V25.3738C81.5338 23.895 81.9034 22.8196 82.6092 22.1138C83.315 21.408 84.2224 21.0719 85.3315 21.0719C85.8356 21.0719 86.2725 21.1391 86.6422 21.2736C86.7094 21.3072 86.7767 21.3408 86.8439 21.3744V17.4422C86.575 17.4086 86.2725 17.375 85.9701 17.375C84.0544 17.375 82.6092 18.0472 81.6346 19.4251Z"
+                            fill="#182033" />
+                        <path
+                            d="M184.377 19.4251C184.343 19.4587 184.31 19.5259 184.276 19.5595V17.7447H180.344V34.9186H184.276V25.3738C184.276 23.895 184.646 22.8196 185.351 22.1138C186.057 21.408 186.965 21.0719 188.074 21.0719C188.578 21.0719 189.015 21.1391 189.384 21.2736C189.452 21.3072 189.519 21.3408 189.586 21.3744V17.4422C189.317 17.4086 189.015 17.375 188.712 17.375C186.83 17.375 185.351 18.0472 184.377 19.4251Z"
+                            fill="#182033" />
+                        <path
+                            d="M204.204 17.7461L199.566 28.9377L195.164 17.7461H190.828L197.382 33.206L194.088 39.9276H198.39L200.608 35.088L208.573 17.7461H204.204Z"
+                            fill="#182033" />
+                        <path
+                            d="M32.5814 25.2111L21.6379 31.5218C19.1573 32.9445 16.0567 31.157 16.0567 28.3117V16.4927C16.0567 13.6474 19.1573 11.8599 21.6379 13.2826L32.5814 19.5934C33.6758 20.25 34.9525 20.5783 36.2293 20.5783H42.4306C43.6709 20.5783 44.6193 19.4475 44.4004 18.2072C42.3941 7.70139 33.0921 -0.214441 21.9662 0.00443027C10.0377 0.223301 0.297972 9.92658 0.0061444 21.855C-0.285683 34.4766 9.85533 44.8 22.4039 44.8C33.3475 44.8 42.4306 36.9571 44.4004 26.5972C44.6193 25.3934 43.6709 24.2626 42.4306 24.2626H36.2293C34.9525 24.2261 33.6758 24.5544 32.5814 25.2111Z"
+                            fill="url(#paint0_linear_2233_1957)" />
+                        <defs>
+                            <linearGradient id="paint0_linear_2233_1957" x1="6.58294" y1="38.22" x2="38.2194"
+                                y2="6.5836" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#DC1500" />
+                                <stop offset="1" stop-color="#FD4633" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+
+
+                </div>
+
+                <!-- Heading -->
+                <h1 id="hero-title" class="main-heading">
+                    A new way of creating videos is coming!
+                </h1>
+                <p class="sub">Sign up for an early access!</p>
+
+                <!-- CTA + Countdown -->
+                <div class="cta-row">
+                    <a class="btn" href="#signup" role="button">Join Now</a>
+
+                    <div class="timer" aria-label="Countdown to launch" aria-live="polite">
+                        <div class="chip" aria-label="days left">
+                            <div class="num" id="d">0</div>
+                            <span class="lab">days</span>
+                        </div>
+                        <div class="chip" aria-label="hours left">
+                            <div class="num" id="h">0</div>
+                            <span class="lab">hrs</span>
+                        </div>
+                        <div class="chip" aria-label="minutes left">
+                            <div class="num" id="m">0</div>
+                            <span class="lab">mins</span>
+                        </div>
+                        <div class="chip" aria-label="seconds left">
+                            <div class="num" id="s">0</div>
+                            <span class="lab">secs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="duo" aria-hidden="true">
+                    <img src="./images/characters.png" alt="characters">
+                </div>
+
+                <div class="glow" aria-hidden="true"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        /**
+         * Countdown to Nov 17 @ 10:00 AM America/Los_Angeles
+         * Notes:
+         * - Nov 17 is after DST ends, so Pacific offset is UTC-08:00.
+         * - We compute the next upcoming Nov 17 at 10:00 in Los Angeles; if today is past it, use next year.
+         * - We work in UTC to avoid local timezone pitfalls.
+         */
+        (function () {
+            const els = {
+                d: document.getElementById('d'),
+                h: document.getElementById('h'),
+                m: document.getElementById('m'),
+                s: document.getElementById('s')
+            };
+
+            function pad(n) { return n.toString().padStart(2, '0'); }
+
+            function targetEpochMs() {
+                const now = new Date();
+                let year = now.getUTCFullYear();
+
+             
+                let target = Date.UTC(year, 10 /* Nov */, 17, 18, 0, 0); 
+
+                if (Date.now() >= target) {
+                    year += 1;
+                    target = Date.UTC(year, 10, 17, 18, 0, 0);
+                }
+                return target;
+            }
+
+            function tick() {
+                const end = targetEpochMs();
+                let diff = end - Date.now();
+
+                if (diff < 0) diff = 0;
+
+                const sec = Math.floor(diff / 1000);
+                const days = Math.floor(sec / 86400);
+                const hours = Math.floor((sec % 86400) / 3600);
+                const mins = Math.floor((sec % 3600) / 60);
+                const secs = sec % 60;
+
+                els.d.textContent = days;
+                els.h.textContent = pad(hours);
+                els.m.textContent = pad(mins);
+                els.s.textContent = pad(secs);
+            }
+
+            tick();
+            const timer = setInterval(tick, 1000);
+            window.addEventListener('visibilitychange', () => {
+                if (!document.hidden) tick();
+            });
+        })();
+    </script>
+</body>
+
+</html>
